@@ -19,7 +19,6 @@ set cflag=/permissive- /GS- /W3 /Gy /Zc:wchar_t /Gm- /Od /sdl-
 set cflag=%cflag% /Zc:inline /fp:precise /D "NDEBUG" /D "_CONSOLE" /D "_MBCS" /errorReport:prompt /WX- /Zc:forScope
 set cflag=%cflag% /Gd /MD /FC /EHsc /nologo
 set cflag=%cflag% /diagnostics:column 
-set cflag=%cflag% /Fo"t.obj"
 :set cflag=%cflag% /Fa"t.asm"
 
 set lflag=/MANIFEST:NO /NXCOMPAT /DYNAMICBASE:NO /MACHINE:X64 /ENTRY:"main" 
@@ -28,7 +27,6 @@ set lflag=%lflag% /NOLOGO /NODEFAULTLIB /TLBID:1
 
 set libs=kernel32.lib
 
-%cc% /c %cflag% t.c
+%cc% %cflag% /c /Fo"t.obj" main.c
 
-:%ld% %lflag% %libs% /OUT:t.exe t.obj
-:dir t.exe
+%ld% %lflag% %libs% /out:t.exe t.obj
